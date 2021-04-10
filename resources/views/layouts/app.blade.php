@@ -22,14 +22,14 @@
 
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 h-100" id="body">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
-                </div>
+                </div> --}}
             </header>
 
             <!-- Page Content -->
@@ -38,4 +38,30 @@
             </main>
         </div>
     </body>
+    {{-- <script src="{{ asset('libs/three.r119.min.js') }}"></script>
+    <script src="{{ asset('libs/vanta.net.min.js') }}"></script> --}}
+    <script>
+        // VANTA.NET({
+        //   el: "#body",
+        //   mouseControls: true,
+        //   touchControls: true,
+        //   gyroControls: false,
+        //   minHeight: 200.00,
+        //   minWidth: 200.00,
+        //   scale: 1.00,
+        //   scaleMobile: 1.00,
+        //   color: 0xff00ff,
+        //   backgroundColor: 0x0ffffff,
+        //   points: 20.00,
+        //   maxDistance: 28.00,
+        //   spacing: 20.00
+        // })
+
+        // document.querySelector('canvas').setAttribute('width', '100%')
+    </script>
+    <style>
+        canvas {
+            height: 100% !important;
+        }
+    </style>
 </html>

@@ -1,40 +1,43 @@
 <template>
-  <div class="bg-green-400 p-4 text-gray-900 rounded">
+  <div class="bg-green-400 p-4 text-gray-900 rounded m-auto lg:mx-16 sm:mx-4">
       <span>{{ this.msg }}</span>
       <span>Okay</span>
       <div class="my-4">
-        <span class="bg-gray-900 font-semibold p-2 text-white text-center rounded" v-on:click="toggleUserMessage('users')">Show users</span>
-        <span class="bg-gray-900 font-semibold p-2 text-white text-center rounded" v-on:click="toggleUserMessage('messages')">Show Messages</span>
+        <span class="bg-gray-900 font-semibold p-2 text-white text-center rounded hover-cursor" v-on:click="toggleUserMessage('users')">Show users</span>
+        <span class="bg-gray-900 font-semibold p-2 text-white text-center rounded hover-cursor" v-on:click="toggleUserMessage('messages')">Show Messages</span>
       </div>
 
-      <div class="bg-red-100 p-4 rounded text-black" v-show="this.showUsers">
+      <div class="bg-red-100 p-4 rounded text-black chatarea_user" v-show="this.showUsers">
           <h2 class=" bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md">
             Users
           </h2>
           <div class="mt-4 p-4 bg-green-400 text-gray-900" v-for="user in this.users" v-bind:key="user.id">
               <span class="p-2 mt-2.bg-red-100.text-black">{{ user.name }}</span>
-
+              <span v-if="auth_id == user.id" class="float-right font-semibold text-black" >Me</span>
+            
               <button v-if="auth_id != user.id" class="float-right bg-green-400" v-on:click="privateChat( user.id )">Chat</button>
           </div>
       </div>
 
-      <div class="bg-red-100 p-4 rounded text-black h-screen" v-show="this.showMessages" id="list_messages">
+      <div class="bg-red-100 p-4 rounded text-black h-screen chatarea_msg" v-show="this.showMessages" id="list_messages">
           <h2 class=" bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md text-center">
               Messages
           </h2>
           <div class="" v-for="message in this.messages" v-bind:key="message.id">
               <div v-if="message.sent_id == auth_id" class=" mt-4 p-2 bg-blue-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-right ">
-                <div class="p-1 m-0 bg-red-250 text-gray-600 text-xs float-right">{{ message.sent_by }}</div>
+                <div class=" m-0 bg-red-250 text-gray-600  float-right">{{ message.sent_by }}</div>
                 <div class="p-1 mt-1 bg-red-250 text-black">{{ message.content }}</div>
+                <div class=" bg-red-250 text-black text-xs float-right">{{ handleTimestamp(message.created_at) }}</div>
               </div>
               <div class="mt-4 p-2 bg-green-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-left" v-else>
-                <div class="p-1 m-0 bg-red-250 text-gray-600 text-xs float-right">{{ message.sent_by }}</div>
+                <div class=" m-0 bg-red-250 text-gray-600 text-xs float-right">{{ message.sent_by }}</div>
                 <div class="p-1 mt-1 bg-red-250 text-black">{{ message.content }}</div>
+                <div class=" bg-red-250 text-black text-xs float-right">{{ handleTimestamp(message.created_at) }}</div>
               </div>
           </div>
       </div>
 
-      <div v-show="this.showMessages" class="bg-red-100 p-4 ">
+      <div v-show="this.showMessages" class="bg-red-100 p-2 chatarea_txt ">
         <div class="mt-4 p-2 bg-green-400 button-circle"  id="angle-down">
             <button v-on:click="scrollMessageToBottom()"><i class="fas fa-angle-double-down hover:text-red-250" style="font-size: 1.5rem;"></i></button>
         </div>
@@ -122,16 +125,7 @@ export default {
     methods: {
         listenUser(type) {
             console.log('listening');
-
-            // Echo.private('the-private-channel')
-            // Echo.channel('the-presence-channel')
-            // Echo.channel('the-private-channel')
-            // Echo.join('the-presence-channel')
-            //     .listen('BroadcastMessage', (e) => {
-            //         console.log(e);
-            //         console.log('inside listen of ECHO');
-            //     });
-
+            
             var vm = this;
             console.log('------------------- OUTSIDE')
             console.log(this);
@@ -177,21 +171,6 @@ export default {
                     // window.scrollTop = window.scrollHeight;
 
                 });
-
-            // Echo.private(`the-private-channel-user`)
-            //     .listen(`.new.message.${auth_id}`, function(e) {
-            //         console.log('got new PRIVATE message')
-                    
-            //         vm.p_messages.push(e);
-            //     });
-
-            // Echo.channel('the-presence-channel.'+type)
-            //     .listen('NewMessage', function(e) {
-            //         console.log('got new message')
-            //         // this.message.push(e.message);
-            //         console.log(e);
-                    
-            //     });
 
             console.log('end of listent')
         }, 
@@ -351,6 +330,8 @@ export default {
                         var oldMessageScrollHeight = document.querySelector('#list_messages').scrollHeight;
                         var oldPrivateMessageScrollHeight = document.querySelector('#list_private_messages').scrollHeight;
 
+                        response.reverse();
+                        
                         response.forEach(element => {
                             if(this.showPrivateChat == true) {
                                 this.p_messages.unshift(element);
@@ -415,15 +396,25 @@ export default {
             console.log('PRIVATE '+user_id);
             this.getAllMessages(user_id);
             this.chat_with = user_id;
+        },
+        handleTimestamp(timestamp) {
+            var d = new Date(timestamp);
+            
+            var options = {
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: 'numeric', 
+                minute: 'numeric', 
+                hour12: true
+            };
+            var time = d.toLocaleTimeString('en-US', options);
+
+            return d.toLocaleString('en-US', options);
         }
     }, 
     computed: {
-        // changeMessages: function() {
-        //     console.log(this.messages);
-        //     console.log('this.messages');
-        //     this.messages = this.messages;
-        //     return this.messages;
-        // }
+        // 
     }
 
 }
@@ -435,6 +426,11 @@ export default {
 }
 .chat-message-input {
     width: 90%;
+}
+@media only screen and (max-width: 768px) {
+    .chat-message-input {
+        width: 75%;
+    }
 }
 #list_messages {
     margin-top: 5px;
@@ -461,5 +457,18 @@ export default {
     position: static;
     margin-left: auto;
 }
-
+/* @media only screen and (max-width: 768px) {
+    #angle-down {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 20vw;
+        margin-left: auto;
+    }
+} */
+.hover-cursor:hover {
+    cursor: pointer;
+}
+.chatarea {
+    background: rgb(243,244,246, 0.4);
+}
 </style>
