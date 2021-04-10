@@ -3907,6 +3907,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3944,15 +3947,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     listenUser: function listenUser(type) {
       var _this = this;
 
-      console.log('listening'); // Echo.private('the-private-channel')
-      // Echo.channel('the-presence-channel')
-      // Echo.channel('the-private-channel')
-      // Echo.join('the-presence-channel')
-      //     .listen('BroadcastMessage', (e) => {
-      //         console.log(e);
-      //         console.log('inside listen of ECHO');
-      //     });
-
+      console.log('listening');
       var vm = this;
       console.log('------------------- OUTSIDE');
       console.log(this);
@@ -3990,18 +3985,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }, 1500);
         } // window.scrollTop = window.scrollHeight;
 
-      }); // Echo.private(`the-private-channel-user`)
-      //     .listen(`.new.message.${auth_id}`, function(e) {
-      //         console.log('got new PRIVATE message')
-      //         vm.p_messages.push(e);
-      //     });
-      // Echo.channel('the-presence-channel.'+type)
-      //     .listen('NewMessage', function(e) {
-      //         console.log('got new message')
-      //         // this.message.push(e.message);
-      //         console.log(e);
-      //     });
-
+      });
       console.log('end of listent');
     },
     post_message: function post_message() {
@@ -4165,6 +4149,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(response);
                   var oldMessageScrollHeight = document.querySelector('#list_messages').scrollHeight;
                   var oldPrivateMessageScrollHeight = document.querySelector('#list_private_messages').scrollHeight;
+                  response.reverse();
                   response.forEach(function (element) {
                     if (_this4.showPrivateChat == true) {
                       _this4.p_messages.unshift(element);
@@ -4233,14 +4218,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log('PRIVATE ' + user_id);
       this.getAllMessages(user_id);
       this.chat_with = user_id;
+    },
+    handleTimestamp: function handleTimestamp(timestamp) {
+      var d = new Date(timestamp);
+      var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+      };
+      var time = d.toLocaleTimeString('en-US', options);
+      return d.toLocaleString('en-US', options);
     }
   },
-  computed: {// changeMessages: function() {
-    //     console.log(this.messages);
-    //     console.log('this.messages');
-    //     this.messages = this.messages;
-    //     return this.messages;
-    // }
+  computed: {// 
   }
 });
 
@@ -4312,10 +4305,10 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4329,7 +4322,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.chat-element {\r\n    width: 75%;\n}\n.chat-message-input {\r\n    width: 90%;\n}\n#list_messages {\r\n    margin-top: 5px;\r\n    height: 60vh;\r\n    overflow-y: scroll;\n}\n#list_private_messages {\r\n    margin-top: 5px;\r\n    height: 60vh;\r\n    overflow-y: scroll;\n}\n.button-circle {\r\n    border-radius: 3rem;\r\n    width: 3rem;\r\n    border-radius: 50%;\r\n    text-align: center;\n}\n#paper-plane {\r\n    position: static;\r\n    margin-left: auto;\n}\n#angle-down {\r\n    position: static;\r\n    margin-left: auto;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.chat-element {\r\n    width: 75%;\n}\n.chat-message-input {\r\n    width: 90%;\n}\n@media only screen and (max-width: 768px) {\n.chat-message-input {\r\n        width: 75%;\n}\n}\n#list_messages {\r\n    margin-top: 5px;\r\n    height: 60vh;\r\n    overflow-y: scroll;\n}\n#list_private_messages {\r\n    margin-top: 5px;\r\n    height: 60vh;\r\n    overflow-y: scroll;\n}\n.button-circle {\r\n    border-radius: 3rem;\r\n    width: 3rem;\r\n    border-radius: 50%;\r\n    text-align: center;\n}\n#paper-plane {\r\n    position: static;\r\n    margin-left: auto;\n}\n#angle-down {\r\n    position: static;\r\n    margin-left: auto;\n}\r\n/* @media only screen and (max-width: 768px) {\r\n    #angle-down {\r\n        position: absolute;\r\n        right: 1.5rem;\r\n        bottom: 20vw;\r\n        margin-left: auto;\r\n    }\r\n} */\n.hover-cursor:hover {\r\n    cursor: pointer;\n}\n.chatarea {\r\n    background: rgb(243,244,246, 0.4);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23185,6 +23178,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/custom.css":
+/*!**********************************!*\
+  !*** ./resources/css/custom.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -28707,10 +28713,10 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28720,7 +28726,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Connect.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Connect.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&");
 
             
 
@@ -28729,11 +28735,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -29081,7 +29087,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Connect.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Connect_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Connect.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Connect.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
@@ -29119,247 +29125,410 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-green-400 p-4 text-gray-900 rounded" }, [
-    _c("span", [_vm._v(_vm._s(this.msg))]),
-    _vm._v(" "),
-    _c("span", [_vm._v("Okay")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "my-4" }, [
-      _c(
-        "span",
-        {
-          staticClass:
-            "bg-gray-900 font-semibold p-2 text-white text-center rounded",
-          on: {
-            click: function($event) {
-              return _vm.toggleUserMessage("users")
+  return _c(
+    "div",
+    {
+      staticClass:
+        "bg-green-400 p-4 text-gray-900 rounded m-auto lg:mx-16 sm:mx-4"
+    },
+    [
+      _c("span", [_vm._v(_vm._s(this.msg))]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Okay")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "my-4" }, [
+        _c(
+          "span",
+          {
+            staticClass:
+              "bg-gray-900 font-semibold p-2 text-white text-center rounded hover-cursor",
+            on: {
+              click: function($event) {
+                return _vm.toggleUserMessage("users")
+              }
             }
-          }
+          },
+          [_vm._v("Show users")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass:
+              "bg-gray-900 font-semibold p-2 text-white text-center rounded hover-cursor",
+            on: {
+              click: function($event) {
+                return _vm.toggleUserMessage("messages")
+              }
+            }
+          },
+          [_vm._v("Show Messages")]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.showUsers,
+              expression: "this.showUsers"
+            }
+          ],
+          staticClass: "bg-red-100 p-4 rounded text-black chatarea_user"
         },
-        [_vm._v("Show users")]
+        [
+          _c(
+            "h2",
+            {
+              staticClass:
+                " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md"
+            },
+            [_vm._v("\n          Users\n        ")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.users, function(user) {
+            return _c(
+              "div",
+              {
+                key: user.id,
+                staticClass: "mt-4 p-4 bg-green-400 text-gray-900"
+              },
+              [
+                _c("span", { staticClass: "p-2 mt-2.bg-red-100.text-black" }, [
+                  _vm._v(_vm._s(user.name))
+                ]),
+                _vm._v(" "),
+                _vm.auth_id == user.id
+                  ? _c(
+                      "span",
+                      { staticClass: "float-right font-semibold text-black" },
+                      [_vm._v("Me")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.auth_id != user.id
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "float-right bg-green-400",
+                        on: {
+                          click: function($event) {
+                            return _vm.privateChat(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Chat")]
+                    )
+                  : _vm._e()
+              ]
+            )
+          })
+        ],
+        2
       ),
       _vm._v(" "),
       _c(
-        "span",
+        "div",
         {
-          staticClass:
-            "bg-gray-900 font-semibold p-2 text-white text-center rounded",
-          on: {
-            click: function($event) {
-              return _vm.toggleUserMessage("messages")
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.showMessages,
+              expression: "this.showMessages"
             }
-          }
+          ],
+          staticClass:
+            "bg-red-100 p-4 rounded text-black h-screen chatarea_msg",
+          attrs: { id: "list_messages" }
         },
-        [_vm._v("Show Messages")]
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.showUsers,
-            expression: "this.showUsers"
-          }
+        [
+          _c(
+            "h2",
+            {
+              staticClass:
+                " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md text-center"
+            },
+            [_vm._v("\n            Messages\n        ")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.messages, function(message) {
+            return _c("div", { key: message.id }, [
+              message.sent_id == _vm.auth_id
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        " mt-4 p-2 bg-blue-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-right "
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            " m-0 bg-red-250 text-gray-600  float-right"
+                        },
+                        [_vm._v(_vm._s(message.sent_by))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "p-1 mt-1 bg-red-250 text-black" },
+                        [_vm._v(_vm._s(message.content))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            " bg-red-250 text-black text-xs float-right"
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.handleTimestamp(message.created_at))
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _c(
+                    "div",
+                    {
+                      staticClass:
+                        "mt-4 p-2 bg-green-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-left"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            " m-0 bg-red-250 text-gray-600 text-xs float-right"
+                        },
+                        [_vm._v(_vm._s(message.sent_by))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "p-1 mt-1 bg-red-250 text-black" },
+                        [_vm._v(_vm._s(message.content))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            " bg-red-250 text-black text-xs float-right"
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.handleTimestamp(message.created_at))
+                          )
+                        ]
+                      )
+                    ]
+                  )
+            ])
+          })
         ],
-        staticClass: "bg-red-100 p-4 rounded text-black"
-      },
-      [
-        _c(
-          "h2",
-          {
-            staticClass:
-              " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md"
-          },
-          [_vm._v("\n          Users\n        ")]
-        ),
-        _vm._v(" "),
-        _vm._l(this.users, function(user) {
-          return _c(
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.showMessages,
+              expression: "this.showMessages"
+            }
+          ],
+          staticClass: "bg-red-100 p-2 chatarea_txt "
+        },
+        [
+          _c(
             "div",
             {
-              key: user.id,
-              staticClass: "mt-4 p-4 bg-green-400 text-gray-900"
+              staticClass: "mt-4 p-2 bg-green-400 button-circle",
+              attrs: { id: "angle-down" }
             },
             [
-              _c("span", { staticClass: "p-2 mt-2.bg-red-100.text-black" }, [
-                _vm._v(_vm._s(user.name))
-              ]),
-              _vm._v(" "),
-              _vm.auth_id != user.id
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "float-right bg-green-400",
-                      on: {
-                        click: function($event) {
-                          return _vm.privateChat(user.id)
-                        }
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.scrollMessageToBottom()
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-angle-double-down hover:text-red-250",
+                    staticStyle: { "font-size": "1.5rem" }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.content,
+                    expression: "content"
+                  }
+                ],
+                staticClass:
+                  "mt-4 p-2 bg-blue-400 text-gray-900  chat-message-input ",
+                attrs: { type: "text", name: "content" },
+                domProps: { value: _vm.content },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.content = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "mt-4 p-2 bg-blue-400 button-circle float-right",
+                attrs: { id: "paper-plane" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.post_message()
                       }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-paper-plane hover:text-red-250",
+                      staticStyle: { "font-size": "1.5rem" }
+                    })
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.showPrivateChat,
+              expression: "this.showPrivateChat"
+            }
+          ],
+          staticClass: "bg-red-100 p-4 rounded text-black h-screen",
+          attrs: { id: "list_private_messages" }
+        },
+        [
+          _c(
+            "h2",
+            {
+              staticClass:
+                " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md text-center"
+            },
+            [_vm._v("\n            Messages\n        ")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.p_messages, function(message) {
+            return _c("div", { key: message.id }, [
+              message.sent_id == _vm.auth_id
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        " mt-4 p-2 bg-blue-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-right "
                     },
-                    [_vm._v("Chat")]
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
+                        },
+                        [_vm._v(_vm._s(message.sent_by))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "p-1 mt-1 bg-red-250 text-black" },
+                        [_vm._v(_vm._s(message.content))]
+                      )
+                    ]
                   )
-                : _vm._e()
-            ]
-          )
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.showMessages,
-            expression: "this.showMessages"
-          }
+                : _c(
+                    "div",
+                    {
+                      staticClass:
+                        "mt-4 p-2 bg-green-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-left"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
+                        },
+                        [_vm._v(_vm._s(message.sent_by))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "p-1 mt-1 bg-red-250 text-black" },
+                        [_vm._v(_vm._s(message.content))]
+                      )
+                    ]
+                  )
+            ])
+          })
         ],
-        staticClass: "bg-red-100 p-4 rounded text-black h-screen",
-        attrs: { id: "list_messages" }
-      },
-      [
-        _c(
-          "h2",
-          {
-            staticClass:
-              " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md text-center"
-          },
-          [_vm._v("\n            Messages\n        ")]
-        ),
-        _vm._v(" "),
-        _vm._l(this.messages, function(message) {
-          return _c("div", { key: message.id }, [
-            message.sent_id == _vm.auth_id
-              ? _c(
-                  "div",
-                  {
-                    staticClass:
-                      " mt-4 p-2 bg-blue-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-right "
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
-                      },
-                      [_vm._v(_vm._s(message.sent_by))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "p-1 mt-1 bg-red-250 text-black" },
-                      [_vm._v(_vm._s(message.content))]
-                    )
-                  ]
-                )
-              : _c(
-                  "div",
-                  {
-                    staticClass:
-                      "mt-4 p-2 bg-green-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-left"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
-                      },
-                      [_vm._v(_vm._s(message.sent_by))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "p-1 mt-1 bg-red-250 text-black" },
-                      [_vm._v(_vm._s(message.content))]
-                    )
-                  ]
-                )
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.showMessages,
-            expression: "this.showMessages"
-          }
-        ],
-        staticClass: "bg-red-100 p-4 "
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "mt-4 p-2 bg-green-400 button-circle",
-            attrs: { id: "angle-down" }
-          },
-          [
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.scrollMessageToBottom()
-                  }
-                }
-              },
-              [
-                _c("i", {
-                  staticClass: "fas fa-angle-double-down hover:text-red-250",
-                  staticStyle: { "font-size": "1.5rem" }
-                })
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.content,
-                  expression: "content"
-                }
-              ],
-              staticClass:
-                "mt-4 p-2 bg-blue-400 text-gray-900  chat-message-input ",
-              attrs: { type: "text", name: "content" },
-              domProps: { value: _vm.content },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.content = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
             {
-              staticClass: "mt-4 p-2 bg-blue-400 button-circle float-right",
-              attrs: { id: "paper-plane" }
+              name: "show",
+              rawName: "v-show",
+              value: this.showPrivateChat,
+              expression: "this.showPrivateChat"
+            }
+          ],
+          staticClass: "bg-red-100 p-4 "
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "mt-4 p-2 bg-green-400 button-circle",
+              attrs: { id: "angle-down" }
             },
             [
               _c(
@@ -29367,197 +29536,76 @@ var render = function() {
                 {
                   on: {
                     click: function($event) {
-                      return _vm.post_message()
+                      return _vm.scrollMessageToBottom("list_private_messages")
                     }
                   }
                 },
                 [
                   _c("i", {
-                    staticClass: "fas fa-paper-plane hover:text-red-250",
+                    staticClass: "fas fa-angle-double-down hover:text-red-250",
                     staticStyle: { "font-size": "1.5rem" }
                   })
                 ]
               )
             ]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.showPrivateChat,
-            expression: "this.showPrivateChat"
-          }
-        ],
-        staticClass: "bg-red-100 p-4 rounded text-black h-screen",
-        attrs: { id: "list_private_messages" }
-      },
-      [
-        _c(
-          "h2",
-          {
-            staticClass:
-              " bg-blue-400 text-red-900 font-semibold p-2 shadow shadow-md text-center"
-          },
-          [_vm._v("\n            Messages\n        ")]
-        ),
-        _vm._v(" "),
-        _vm._l(this.p_messages, function(message) {
-          return _c("div", { key: message.id }, [
-            message.sent_id == _vm.auth_id
-              ? _c(
-                  "div",
+          ),
+          _vm._v(" "),
+          _c("div", [
+            _c("span", [
+              _c("input", {
+                directives: [
                   {
-                    staticClass:
-                      " mt-4 p-2 bg-blue-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-right "
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
-                      },
-                      [_vm._v(_vm._s(message.sent_by))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "p-1 mt-1 bg-red-250 text-black" },
-                      [_vm._v(_vm._s(message.content))]
-                    )
-                  ]
-                )
-              : _c(
-                  "div",
-                  {
-                    staticClass:
-                      "mt-4 p-2 bg-green-400 text-gray-900 rounded-tr-lg rounded-bl-lg chat-element float-left"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-1 m-0 bg-red-250 text-gray-600 text-xs float-right"
-                      },
-                      [_vm._v(_vm._s(message.sent_by))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "p-1 mt-1 bg-red-250 text-black" },
-                      [_vm._v(_vm._s(message.content))]
-                    )
-                  ]
-                )
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: this.showPrivateChat,
-            expression: "this.showPrivateChat"
-          }
-        ],
-        staticClass: "bg-red-100 p-4 "
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "mt-4 p-2 bg-green-400 button-circle",
-            attrs: { id: "angle-down" }
-          },
-          [
-            _c(
-              "button",
-              {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.content,
+                    expression: "content"
+                  }
+                ],
+                staticClass:
+                  "mt-4 p-2 bg-blue-400 text-gray-900  chat-message-input ",
+                attrs: { type: "text", name: "content" },
+                domProps: { value: _vm.content },
                 on: {
-                  click: function($event) {
-                    return _vm.scrollMessageToBottom("list_private_messages")
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.content = $event.target.value
                   }
                 }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "mt-4 p-2 bg-blue-400 button-circle float-right",
+                attrs: { id: "paper-plane" }
               },
               [
-                _c("i", {
-                  staticClass: "fas fa-angle-double-down hover:text-red-250",
-                  staticStyle: { "font-size": "1.5rem" }
-                })
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.post_message()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-paper-plane hover:text-red-250",
+                      staticStyle: { "font-size": "1.5rem" }
+                    })
+                  ]
+                )
               ]
             )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.content,
-                  expression: "content"
-                }
-              ],
-              staticClass:
-                "mt-4 p-2 bg-blue-400 text-gray-900  chat-message-input ",
-              attrs: { type: "text", name: "content" },
-              domProps: { value: _vm.content },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.content = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "mt-4 p-2 bg-blue-400 button-circle float-right",
-              attrs: { id: "paper-plane" }
-            },
-            [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.post_message()
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-paper-plane hover:text-red-250",
-                    staticStyle: { "font-size": "1.5rem" }
-                  })
-                ]
-              )
-            ]
-          )
-        ])
-      ]
-    )
-  ])
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41783,7 +41831,8 @@ Vue.compile = compileToFunctions;
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./resources/js/app.js"],
-/******/ 			["./resources/css/app.css"]
+/******/ 			["./resources/css/app.css"],
+/******/ 			["./resources/css/custom.css"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		
